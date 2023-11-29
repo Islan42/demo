@@ -1,6 +1,7 @@
 services:
     app:
         image: php:8.1-apache
+        command: sh -c "cat htconfig.txt >> /etc/apache2/apache2.conf && apache2-foreground"
         volumes:
             - ./:/var/www/html
         ports:
