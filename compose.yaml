@@ -6,3 +6,15 @@ services:
             - ./:/var/www/html
         ports:
             - 80:80
+    mysql:
+        image: mysql
+        volumes:
+            - posts-db:/var/lib/mysql
+        ports: 
+            - 8080:80
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: posts
+
+volumes:
+    posts-db:
