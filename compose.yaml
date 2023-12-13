@@ -1,7 +1,6 @@
 services:
     app:
-        image: php:8.1-apache
-        command: sh -c "cat htconfig.txt >> /etc/apache2/apache2.conf && apache2-foreground"
+        build: .
         volumes:
             - ./:/var/www/html
         ports:
@@ -10,11 +9,15 @@ services:
         image: mysql
         volumes:
             - posts-db:/var/lib/mysql
-        ports: 
-            - 8080:80
         environment:
             MYSQL_ROOT_PASSWORD: password
-            MYSQL_DATABASE: posts
+            MYSQL_DATABASE: app_db
+    phpma:
+        image: phpmyadmin
+        environment:
+            PMA_HOST: mysql 
+        ports:
+            - 8080:80
 
 volumes:
     posts-db:
