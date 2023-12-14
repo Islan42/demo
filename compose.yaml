@@ -5,6 +5,7 @@ services:
             - ./:/var/www/html
         ports:
             - 80:80
+        restart: always
     mysql:
         image: mysql
         volumes:

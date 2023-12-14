@@ -53,4 +53,8 @@ class Router {
 		$index = array_key_last($this -> routes);
 		$this -> routes[$index]['middleware'] = $key;
 	}
+	
+	public function previousUrl(){
+		return $_SERVER['HTTP_REFERER'];
+	}
 }

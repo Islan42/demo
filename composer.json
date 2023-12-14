@@ -1,0 +1,17 @@
+{
+    "name": "root/html",
+    "authors": [
+        {
+            "name": "Islan Victhor"
+        }
+    ],
+    "require": {
+        "illuminate/collections": "^10.37"
+    },
+	"autoload": {
+		"psr-4": {
+			"Core\\": "Core/",
+			"Http\\": "Http/"			
+		}
+	}
+}
