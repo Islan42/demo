@@ -4,47 +4,39 @@ use Core\Validator;
 use Core\App;
 use Core\Database;
 
+use Http\Forms\RegisterForm;
+use Core\Authenticator;
+use Core\Session;
+
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$errors = [];
-
-if (! Validator::string($password, 7, 255)){
-	$errors['password'] = 'You must insert a password with more than 7 chars.';
-}
-
-if (! Validator::email($email)){
-	$errors['email'] = 'You must provide a valid email.';
-}
-
-if (! empty($errors)){
-	return view('users/create.view.php', [
-		'errors' => $errors,
-	]);
-}
-
-$db = App::resolve(Database::class);
-
-$user= $db -> query('SELECT * FROM users WHERE email = :email', [
+$form = RegisterForm::validate([
 	'email' => $email,
-]) -> find();
+	'password' => $password,
+]);
 
-if ($user){
-	header('location: /');
-	die();
+$auth = new Authenticator;
+
+$old = $auth -> oldUser($email);
+
+if ($old){
+	Session::flash('old', [
+		'email' => $form -> attributes()['email'],
+	]);
+	Session::flash('errors', [
+		'password' => 'You already have an account, sou you was REDIRECTED TO LOGIN PAGE.'
+	]);
+	redirect('/login');
 } else {
+	$db = App::resolve('Core\Database');
+	
 	$db -> query('INSERT INTO users (email, password) VALUES (:email, :password)', [
 		'email' => $email,
 		'password' => password_hash($password, PASSWORD_BCRYPT),
 	]);
 	
-	$_SESSION['user'] = [
-		'email' => $email,
-	];
-	login([
-		'email' => $email,
-	]);
+	$auth -> atempt($email, $password);
 	
-	header('location: /notes');
-	die();	
+	redirect('/');
 }

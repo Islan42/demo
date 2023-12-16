@@ -22,23 +22,11 @@
 		<form method="POST" action="/register" class="max-w-lg mx-auto ">
 			<div class="space-y-12 flex justify-center">
 				<div class="border-b border-gray-900/10 pb-12 w-full">
-				  
-					<!--
-					<div class="col-span-full">
-					  <label for="body" class="block text-sm font-medium leading-6 text-gray-900">Body</label>
-					  <div class="mt-2">
-						<textarea id="body" name="body" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Create a note..."><?= $_POST['body'] ?? ''; ?></textarea>
-						<?php if(isset($errors['body'])):?>
-							<p class="text-red-500 text-xs mt-2"><?= $errors['body'] ?></p>
-						<?php endif;?>
-					  </div>
-					</div>
-					-->
-					
+				
 					<div >
 						<label for="email" class="block text-sm font-medium leading-6 text-gray-900" >Email: </label>
 						<div class="mt-2">
-							<input required type="email" id="email" name="email" class="w-full block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+							<input required type="email" value="<?= old('email'); ?>" id="email" name="email" class="w-full block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
 							<?php if (isset($errors['email'])): ?>
 								<p class="text-red-500 text-xs mt-2"><?= $errors['email'] ?></p>
 							<?php endif; ?>

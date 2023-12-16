@@ -20,5 +20,3 @@ view("notes/edit.view.php", [
 	'errors' => $errors,
 	'note' => $note,
 ]);
-
-//Fixed Notes CRUD by leveraging the Session class to flash errors and old data and retrieve userID instead of hardcoding it.

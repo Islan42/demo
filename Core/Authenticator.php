@@ -24,6 +24,14 @@ class Authenticator {
 		return false;
 	}
 	
+	public function oldUser($email){
+		$user = App::resolve(Database::class) -> query('SELECT * FROM users WHERE email = :email', [
+			'email' => $email,
+		]) -> find();
+		
+		return (bool) $user;
+	}
+	
 	public function login($user){
 		Session::put('user', [
 			'email' => $user['email'],

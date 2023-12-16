@@ -4,7 +4,7 @@ namespace Http\Forms;
 use Core\Validator;
 use Core\ValidationException;
 
-class LoginForm {
+class RegisterForm {
 	protected $errors = [];
 	protected $attributes = [];
 	

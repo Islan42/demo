@@ -16,7 +16,7 @@ $signedIn = (new Authenticator) -> atempt($email, $password);
 
 if (! $signedIn){
 	$form -> error(
-		'email', 'No matching account found for that email adress and password.'
+		'password', 'No matching account found for that email address and password.'
 	) -> throw();
 }
 
