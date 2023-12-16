@@ -18,9 +18,10 @@
   }
   ```
 -->
-		<form method="POST" action="/note">
+		<form method="POST" action="/note" id="outside">
 			<input type="hidden" name="_method" value="PATCH" />
 			<input type="hidden" name="id" value="<?= $note['id'] ?>" />
+			
 			<div class="space-y-12">
 				<div class="border-b border-gray-900/10 pb-12">
 				  
@@ -38,19 +39,20 @@
 				
 			</div>
 
-			<div class="mt-6 flex items-center justify-end gap-x-4">
-				<a class="rounded-md bg-gray-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" href="/notes">Cancel</a>
-				<button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Update</button>
-			</div>
 		</form>
 		
-		<!--
-		<form class="mt-6" method="POST">
-			<input  type="hidden" name="id" value="<?= $note['id'] ?>"/>
-			<input  type="hidden" name="_method" value="DELETE"/>
-			<button class="text-sm text-red-500">DELETE</button>
-		</form>
-		-->
+		<div class="mt-6 flex items-center justify-end gap-x-4">
+		
+			<form method="POST" action="/note">
+				<input  type="hidden" name="id" value="<?= $note['id'] ?>"/>
+				<input  type="hidden" name="_method" value="DELETE"/>
+				<button type="submit" class="rounded-md bg-red-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">DELETE</button>
+			</form>
+			
+			<a class="rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" href="/notes">Cancel</a>
+			<button form="outside" type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Update</button>
+		</div>
+		
 
 	</div>
 </main>

@@ -20,4 +20,4 @@ if (! $signedIn){
 	) -> throw();
 }
 
-redirect('/login');
+redirect('/');

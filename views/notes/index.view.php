@@ -6,15 +6,20 @@
 	<div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
 		<h2>These are your notes:</h2>
 		<br/>
-		<ul>
-			<?php foreach($notes as $note): ?>
-				<li>
-					<a href="/note?id=<?= $note['id'] ?>" class="text-blue-600 hover:underline">
-						<?= htmlspecialchars($note['body']) ?>
-					</a>
-				</li>
-			<?php endforeach; ?>
-		</ul>
+		
+		<?php if ($notes): ?>
+			<ul>
+				<?php foreach($notes as $note): ?>
+					<li>
+						<a href="/note?id=<?= $note['id'] ?>" class="text-blue-600 hover:underline">
+							<?= htmlspecialchars($note['body']) ?>
+						</a>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+		<?php else: ?>
+			<p class="text-sm text-red-500">You dont have any notes yet.</p>
+		<?php endif; ?>
 		
 		<p class="mt-6">
 			<a href="/notes/create" class="text-blue-600 hover:underline">
